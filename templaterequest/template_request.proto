@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "github.com/mprahl/argocd-templating-plugin/templaterequest";
+
+package templaterequest;
+
+message TemplateRequest {
+  string argoCDAppName = 1;
+  string argoCDAppNamespace = 2;
+  string argoCDAppDestination = 3;
+  string localPath = 4;
+}
+
+service TemplateResolver {
+  rpc Resolve(TemplateRequest) returns (TemplateResponse) {}
+}
+
+message TemplateResponse {
+  string resolvedYAML = 1;
+}
